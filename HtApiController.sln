@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtApiController", "HtApiController\HtApiController.csproj", "{4197432B-3B31-417B-B3D2-FC18E2F32028}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4197432B-3B31-417B-B3D2-FC18E2F32028}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4197432B-3B31-417B-B3D2-FC18E2F32028}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4197432B-3B31-417B-B3D2-FC18E2F32028}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4197432B-3B31-417B-B3D2-FC18E2F32028}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
