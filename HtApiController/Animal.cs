@@ -46,27 +46,20 @@ public class Animal
     {
         List<Animal> animals = new List<Animal>();
 
-        // SQL query to select all animals from the Animal table
         string sqlSelect = "SELECT IdAnimal, Name, Description, Category, Area FROM Animal";
 
         try
         {
-            // Establish connection to the database
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                // Open the connection
                 connection.Open();
 
-                // Create a command object
                 using (SqlCommand command = new SqlCommand(sqlSelect, connection))
                 {
-                    // Execute the command and obtain a data reader
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        // Read each row from the data reader
                         while (reader.Read())
                         {
-                            // Create an Animal object and populate it with data from the reader
                             Animal animal = new Animal
                             {
                                 IdAnimal = (int)reader["IdAnimal"],
@@ -76,7 +69,6 @@ public class Animal
                                 Area = reader["Area"].ToString()
                             };
 
-                            // Add the animal to the list
                             animals.Add(animal);
                         }
                     }
@@ -85,7 +77,6 @@ public class Animal
         }
         catch (Exception ex)
         {
-            // Handle any exceptions
             Console.WriteLine($"An error occurred: {ex.Message}");
         }
 

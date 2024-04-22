@@ -10,7 +10,7 @@ public class AnimalService : IAnimalsService
         string sqlInsert = "INSERT INTO Animal (IdAnimal, Name, Description, Category, Area) " +
                            "VALUES (@IdAnimal, @Name, @Description, @Category, @Area)";
 
-        // Sample values for insertion
+
         string IdAnimal = animal.IdAnimal.ToString();
         string name = animal.Name;
         string description = animal.Description;
@@ -19,36 +19,36 @@ public class AnimalService : IAnimalsService
 
         try
         {
-            // Establish connection to the database
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                // Open the connection
+
                 connection.Open();
 
-                // Create a command object
+
                 using (SqlCommand command = new SqlCommand(sqlInsert, connection))
                 {
                     SqlCommand commandIdentity = new SqlCommand("SET IDENTITY_INSERT Animal ON;", connection);
-                    // Add parameters to the command
+
                     command.Parameters.AddWithValue("@IdAnimal", IdAnimal);
                     command.Parameters.AddWithValue("@Name", name);
                     command.Parameters.AddWithValue("@Description", description);
                     command.Parameters.AddWithValue("@Category", category);
                     command.Parameters.AddWithValue("@Area", area);
 
-                    // Execute the command
+
                     commandIdentity.ExecuteNonQuery();
                     int rowsAffected = command.ExecuteNonQuery();
                     
 
-                    // Output the result
+
                     Console.WriteLine($"Rows Affected: {rowsAffected}");
                 }
             }
         }
         catch (Exception ex)
         {
-            // Handle any exceptions
+
             Console.WriteLine($"An error occurred: {ex.Message}");
         }
     }
@@ -58,7 +58,6 @@ public class AnimalService : IAnimalsService
         string connectionString = "Server=localhost;Database=apbd;User Id=SA;Password=248652Alexey;";
         List<Animal> animals = GetAnimals(connectionString);
 
-        // Display the retrieved animal data
         foreach (Animal animal in animals)
         {
             if (animal.IdAnimal == id)
@@ -73,27 +72,24 @@ public class AnimalService : IAnimalsService
     {
         List<Animal> animals = new List<Animal>();
 
-        // SQL query to select all animals from the Animal table
+
         string sqlSelect = "SELECT IdAnimal, Name, Description, Category, Area FROM Animal";
 
         try
         {
-            // Establish connection to the database
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                // Open the connection
+
                 connection.Open();
 
-                // Create a command object
+
                 using (SqlCommand command = new SqlCommand(sqlSelect, connection))
                 {
-                    // Execute the command and obtain a data reader
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        // Read each row from the data reader
                         while (reader.Read())
                         {
-                            // Create an Animal object and populate it with data from the reader
                             Animal animal = new Animal
                             {
                                 IdAnimal = (int)reader["IdAnimal"],
@@ -102,8 +98,7 @@ public class AnimalService : IAnimalsService
                                 Category = reader["Category"].ToString(),
                                 Area = reader["Area"].ToString()
                             };
-
-                            // Add the animal to the list
+                            
                             animals.Add(animal);
                         }
                     }
@@ -112,7 +107,6 @@ public class AnimalService : IAnimalsService
         }
         catch (Exception ex)
         {
-            // Handle any exceptions
             Console.WriteLine($"An error occurred: {ex.Message}");
         }
 
@@ -124,7 +118,6 @@ public class AnimalService : IAnimalsService
         string connectionString = "Server=localhost;Database=apbd;User Id=SA;Password=248652Alexey;";
         List<Animal> animals = GetAnimals(connectionString);
 
-        // Display the retrieved animal data
         foreach (Animal animal in animals)
         {
             if (animal.IdAnimal == id)
@@ -133,7 +126,6 @@ public class AnimalService : IAnimalsService
 
                 try
                 {
-                    // Establish connection to the database
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         string IdAnimal = id.ToString();
@@ -149,7 +141,6 @@ public class AnimalService : IAnimalsService
                 }
                 catch (Exception ex)
                 {
-                    // Handle any exceptions
                     Console.WriteLine($"An error occurred: {ex.Message}");
                 }
             }
@@ -162,7 +153,6 @@ public class AnimalService : IAnimalsService
         try
         {
             string connectionString = "Server=localhost;Database=apbd;User Id=SA;Password=248652Alexey;";
-            // Establish connection to the database
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string IdAnimal = id.ToString();
@@ -189,7 +179,6 @@ public class AnimalService : IAnimalsService
         }
         catch (Exception ex)
         {
-            // Handle any exceptions
             Console.WriteLine($"An error occurred: {ex.Message}");
         }
     }
